@@ -1,0 +1,801 @@
+﻿
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI大模型导航</title>
+<meta name="keywords" content="AI知识资源网,AI提示词,AI技术教程,自媒体素材,网址导航,工具下载,免费下载平台">
+<meta name="description" content="AI知识资源网专注人工智能全领域,提供免费AI工具、AI提示词、自媒体素材、技术教程、精品软件下载、及行业知识,覆盖初学者到从业者,一站式解决，本站...">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+<link rel="icon" type="image/png" sizes="16x16" href="logo.png">
+<link rel="apple-touch-icon" sizes="180x180" href="logo.png">
+<meta name="msapplication-TileImage" content="logo.png">
+<meta name="msapplication-TileColor" content="#0f172a">
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/all.min.css">
+<script src="/js/jquery-3.7.1.min.js"></script>
+<script src="/static/layer/layer.js"></script>
+<script src="/static/js/main.js"></script> 
+</head>
+<body>
+    <div class="bg-effects">
+        <div class="gradient-flow"></div>
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="grid-lines"></div>
+        <div class="particles-container" id="particles"></div>
+        <svg class="connection-lines" preserveaspectratio="none" viewbox="0 0 100 100">
+            <defs>
+                <lineargradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0"></stop>
+                    <stop offset="50%" style="stop-color:#00d4ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:0"></stop>
+                </lineargradient>
+            </defs>
+            <path class="conn-line" d="M10,90 Q30,40 90,20"></path>
+            <path class="conn-line cl-2" d="M0,50 Q50,30 100,60"></path>
+            <path class="conn-line cl-3" d="M20,100 Q60,60 80,10"></path>
+        </svg>
+    </div>
+
+    <!-- 左右两侧装饰光带 -->
+    <div class="side-particles left"></div>
+    <div class="side-particles right"></div>
+
+    <!-- 左右两侧浮动光点 -->
+    <div class="floating-dots left" id="floatingDotsLeft"></div>
+    <div class="floating-dots right" id="floatingDotsRight"></div>
+
+    <!-- 头部 - Logo + 登录注册 + 全屏按钮 -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-icon">
+                   <a href="http://ai.npin.cn"> <svg viewbox="0 0 24 24" width="24" height="24">
+                        <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path>
+                    </svg></a>
+                </div>
+                <span class="logo-text"><a href="https://www.937788.xyz/">AI大模型聚合</a></span>
+            </div>
+
+            <div class="header-auth">
+                <button class="fullscreen-btn" id="fullscreenBtn" title="全屏模式">
+                    <svg viewbox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+<!-- 移动端顶部导航 -->
+<div class="mobile-header" style="display: none;">
+    <div class="mobile-left">
+        <div class="mobile-logo">
+<i class="fa-solid fa-brain"></i></div>
+        <div class="mobile-user">
+            <div class="welcome">
+                <a href="javascript:;" class="username">AI模型聚合</a>
+
+                            </div>
+        </div>
+    </div>
+    <div class="mobile-right">
+        <button class="mobile-btn" onclick="location.href='/'">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+    </div>
+</div>
+
+<style>
+</style>
+<main class="main-content">
+    <section class="hero-section">
+        <div class="orbit-system">
+
+            <!-- 外环 -->
+            <div class="orbit-ring orbit-outer" id="orbitOuter">
+                                    <div class="orbit-item"
+                         data-name="通义千问"
+                         data-desc="阿里云超大规模语言模型"
+                         data-url="https://tongyi.aliyun.com">
+                        <img class="orbit-icon" src="/static/picture/tyqw.png" alt="通义千问">
+                        <span class="orbit-name">通义千问</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="grok-4.2-image"
+                         data-desc="马斯克的AI多模态大模型"
+                         data-url="https://grok.x.ai">
+                        <img class="orbit-icon" src="/static/picture/grok.png" alt="grok-4.2-image">
+                        <span class="orbit-name">grok-4.2-image</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="腾讯元宝"
+                         data-desc="支持深度思考,联网优质腾讯生态信源"
+                         data-url="https://yuanbao.tencent.com/chat/">
+                        <img class="orbit-icon" src="/static/picture/yuanbao.png" alt="腾讯元宝">
+                        <span class="orbit-name">腾讯元宝</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="豆包"
+                         data-desc="字节跳动自研大模型具备更强推理能力与多模态理解能力"
+                         data-url="https://www.doubao.com/">
+                        <img class="orbit-icon" src="/static/picture/doubao.png" alt="豆包">
+                        <span class="orbit-name">豆包</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="智谱清言"
+                         data-desc="智谱清言是基于 GLM-5 的全能 AI 助手，支持精通对话、写作与编程"
+                         data-url="https://chatglm.cn/main/alltoolsdetail?lang=zh">
+                        <img class="orbit-icon" src="/static/picture/zhipu.png" alt="智谱清言">
+                        <span class="orbit-name">智谱清言</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="kimi模型"
+                         data-desc="月之暗面 (Moonshot AI) 旗下 Kimi K2.5 模型发布！引领开源视觉编程"
+                         data-url="https://www.kimi.com/">
+                        <img class="orbit-icon" src="/static/picture/kimi.png" alt="kimi模型">
+                        <span class="orbit-name">kimi模型</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="DeepSeek"
+                         data-desc="深度求索(DeepSeek),成立于2023年，是一个基于大模型的智能助手"
+                         data-url="https://www.deepseek.com/">
+                        <img class="orbit-icon" src="/static/picture/deep.png" alt="DeepSeek">
+                        <span class="orbit-name">DeepSeek</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="讯飞星火"
+                         data-desc="讯飞星火大模型，是由科大讯飞推出的新一代认知智能大模型"
+                         data-url="https://xinghuo.xfyun.cn/desk">
+                        <img class="orbit-icon" src="/static/picture/xunfei.png" alt="讯飞星火">
+                        <span class="orbit-name">讯飞星火</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="百川智能"
+                         data-desc="最低幻觉循证增强医疗大模型"
+                         data-url="https://ying.baichuan-ai.com/chat">
+                        <img class="orbit-icon" src="/static/picture/baichuan.png" alt="百川智能">
+                        <span class="orbit-name">百川智能</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="MiniMax"
+                         data-desc="MiniMax Agent 是基于顶尖多模态大语言模型打造的智能AI伙伴"
+                         data-url="https://agent.minimaxi.com/">
+                        <img class="orbit-icon" src="/static/picture/mini.png" alt="MiniMax">
+                        <span class="orbit-name">MiniMax</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="纳米AI"
+                         data-desc="纳米AI是360集团研发的AI搜索产品‌，首创多智能体蜂群技术"
+                         data-url="https://www.n.cn/?src=360zn_index">
+                        <img class="orbit-icon" src="/static/picture/360.png" alt="纳米AI">
+                        <span class="orbit-name">纳米AI</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="chatgpt"
+                         data-desc="ChatGPT是由OpenAI开发的‌对话式AI助手‌"
+                         data-url="https://chatgpt.com/">
+                        <img class="orbit-icon" src="/static/picture/gpt.png" alt="chatgpt">
+                        <span class="orbit-name">chatgpt</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="Claude"
+                         data-desc="Claude是由美国人工智能公司Anthropic开发的大型语言模型家族"
+                         data-url="https://claude.com/">
+                        <img class="orbit-icon" src="/static/picture/claude.png" alt="Claude">
+                        <span class="orbit-name">Claude</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="Gemini模型"
+                         data-desc="Google 旗下的AI助理，在写作、规划和开展头脑风暴等方面获得帮助"
+                         data-url="https://gemini.google.com/app?hl=zh">
+                        <img class="orbit-icon" src="/static/picture/gemini.png" alt="Gemini模型">
+                        <span class="orbit-name">Gemini模型</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="Meta AI"
+                         data-desc="生数科技视频模型"
+                         data-url="https://www.meta.ai/">
+                        <img class="orbit-icon" src="/static/picture/meta.png" alt="Meta AI">
+                        <span class="orbit-name">Meta AI</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="小米mimo"
+                         data-desc="小米 MiMo 是小米公司推出的开源大语言模型系列‌"
+                         data-url="https://aistudio.xiaomimimo.com/#/">
+                        <img class="orbit-icon" src="/static/picture/xiaomi.png" alt="小米mimo">
+                        <span class="orbit-name">小米mimo</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="书生・浦语"
+                         data-desc="千亿级参数大语言模型"
+                         data-url="https://chat.intern-ai.org.cn/">
+                        <img class="orbit-icon" src="/static/picture/shusheng.png" alt="书生・浦语">
+                        <span class="orbit-name">书生・浦语</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="天工AI"
+                         data-desc="天工是一款具备超强DeepResearch能力的全新AI Office智能体"
+                         data-url="https://www.tiangong.cn/">
+                        <img class="orbit-icon" src="/static/picture/tiangong.png" alt="天工AI">
+                        <span class="orbit-name">天工AI</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="Copilot"
+                         data-desc="Copilot是微软公司开发的集成于Windows 11操作系统的人工智能助手"
+                         data-url="https://copilot.microsoft.com/">
+                        <img class="orbit-icon" src="/static/picture/Copilot.png" alt="Copilot">
+                        <span class="orbit-name">Copilot</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="触手AI"
+                         data-desc="触手AI绘画是一款基于先进的人工智能技术的图片生成工具"
+                         data-url="https://acgnai.art/">
+                        <img class="orbit-icon" src="/static/picture/chus.png" alt="触手AI">
+                        <span class="orbit-name">触手AI</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="通义千问"
+                         data-desc="阿里云超大规模语言模型"
+                         data-url="https://tongyi.aliyun.com">
+                        <img class="orbit-icon" src="/static/picture/tyqw.png" alt="通义千问">
+                        <span class="orbit-name">通义千问</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="grok-4.2-image"
+                         data-desc="马斯克的AI多模态大模型"
+                         data-url="https://grok.x.ai">
+                        <img class="orbit-icon" src="/static/picture/grok.png" alt="grok-4.2-image">
+                        <span class="orbit-name">grok-4.2-image</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="腾讯元宝"
+                         data-desc="支持深度思考,联网优质腾讯生态信源"
+                         data-url="https://yuanbao.tencent.com/chat/">
+                        <img class="orbit-icon" src="/static/picture/yuanbao.png" alt="腾讯元宝">
+                        <span class="orbit-name">腾讯元宝</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="豆包"
+                         data-desc="字节跳动自研大模型具备更强推理能力与多模态理解能力"
+                         data-url="https://www.doubao.com/">
+                        <img class="orbit-icon" src="/static/picture/doubao.png" alt="豆包">
+                        <span class="orbit-name">豆包</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="智谱清言"
+                         data-desc="智谱清言是基于 GLM-5 的全能 AI 助手，支持精通对话、写作与编程"
+                         data-url="https://chatglm.cn/main/alltoolsdetail?lang=zh">
+                        <img class="orbit-icon" src="/static/picture/zhipu.png" alt="智谱清言">
+                        <span class="orbit-name">智谱清言</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="kimi模型"
+                         data-desc="月之暗面 (Moonshot AI) 旗下 Kimi K2.5 模型发布！引领开源视觉编程"
+                         data-url="https://www.kimi.com/">
+                        <img class="orbit-icon" src="/static/picture/kimi.png" alt="kimi模型">
+                        <span class="orbit-name">kimi模型</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="DeepSeek"
+                         data-desc="深度求索(DeepSeek),成立于2023年，是一个基于大模型的智能助手"
+                         data-url="https://www.deepseek.com/">
+                        <img class="orbit-icon" src="/static/picture/deep.png" alt="DeepSeek">
+                        <span class="orbit-name">DeepSeek</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="讯飞星火"
+                         data-desc="讯飞星火大模型，是由科大讯飞推出的新一代认知智能大模型"
+                         data-url="https://xinghuo.xfyun.cn/desk">
+                        <img class="orbit-icon" src="/static/picture/xunfei.png" alt="讯飞星火">
+                        <span class="orbit-name">讯飞星火</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="百川智能"
+                         data-desc="最低幻觉循证增强医疗大模型"
+                         data-url="https://ying.baichuan-ai.com/chat">
+                        <img class="orbit-icon" src="/static/picture/baichuan.png" alt="百川智能">
+                        <span class="orbit-name">百川智能</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="MiniMax"
+                         data-desc="MiniMax Agent 是基于顶尖多模态大语言模型打造的智能AI伙伴"
+                         data-url="https://agent.minimaxi.com/">
+                        <img class="orbit-icon" src="/static/picture/mini.png" alt="MiniMax">
+                        <span class="orbit-name">MiniMax</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="纳米AI"
+                         data-desc="纳米AI是360集团研发的AI搜索产品‌，首创多智能体蜂群技术"
+                         data-url="https://www.n.cn/?src=360zn_index">
+                        <img class="orbit-icon" src="/static/picture/360.png" alt="纳米AI">
+                        <span class="orbit-name">纳米AI</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="chatgpt"
+                         data-desc="ChatGPT是由OpenAI开发的‌对话式AI助手‌"
+                         data-url="https://chatgpt.com/">
+                        <img class="orbit-icon" src="/static/picture/gpt.png" alt="chatgpt">
+                        <span class="orbit-name">chatgpt</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="Claude"
+                         data-desc="Claude是由美国人工智能公司Anthropic开发的大型语言模型家族"
+                         data-url="https://claude.com/">
+                        <img class="orbit-icon" src="/static/picture/claude.png" alt="Claude">
+                        <span class="orbit-name">Claude</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="Gemini模型"
+                         data-desc="Google 旗下的AI助理，在写作、规划和开展头脑风暴等方面获得帮助"
+                         data-url="https://gemini.google.com/app?hl=zh">
+                        <img class="orbit-icon" src="/static/picture/gemini.png" alt="Gemini模型">
+                        <span class="orbit-name">Gemini模型</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="Meta AI"
+                         data-desc="生数科技视频模型"
+                         data-url="https://www.meta.ai/">
+                        <img class="orbit-icon" src="/static/picture/meta.png" alt="Meta AI">
+                        <span class="orbit-name">Meta AI</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="小米mimo"
+                         data-desc="小米 MiMo 是小米公司推出的开源大语言模型系列‌"
+                         data-url="https://aistudio.xiaomimimo.com/#/">
+                        <img class="orbit-icon" src="/static/picture/xiaomi.png" alt="小米mimo">
+                        <span class="orbit-name">小米mimo</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="书生・浦语"
+                         data-desc="千亿级参数大语言模型"
+                         data-url="https://chat.intern-ai.org.cn/">
+                        <img class="orbit-icon" src="/static/picture/shusheng.png" alt="书生・浦语">
+                        <span class="orbit-name">书生・浦语</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="天工AI"
+                         data-desc="天工是一款具备超强DeepResearch能力的全新AI Office智能体"
+                         data-url="https://www.tiangong.cn/">
+                        <img class="orbit-icon" src="/static/picture/tiangong.png" alt="天工AI">
+                        <span class="orbit-name">天工AI</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="Copilot"
+                         data-desc="Copilot是微软公司开发的集成于Windows 11操作系统的人工智能助手"
+                         data-url="https://copilot.microsoft.com/">
+                        <img class="orbit-icon" src="/static/picture/Copilot.png" alt="Copilot">
+                        <span class="orbit-name">Copilot</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="触手AI"
+                         data-desc="触手AI绘画是一款基于先进的人工智能技术的图片生成工具"
+                         data-url="https://acgnai.art/">
+                        <img class="orbit-icon" src="/static/picture/chus.png" alt="触手AI">
+                        <span class="orbit-name">触手AI</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="AI主页"
+                         data-desc="Framer推出的AI网站自动设计、生成和上线"
+                         data-url="https://aizhuye.com/webnav/ai-design-tools/show/293.html">
+                        <img class="orbit-icon" src="/static/picture/ai.png" alt="AI主页">
+                        <span class="orbit-name">AI主页</span>
+                    </div>
+                            </div>
+
+            <!-- 内环 -->
+            <div class="orbit-ring orbit-inner" id="orbitInner">
+                                    <div class="orbit-item"
+                         data-name="即梦"
+                         data-desc="一站式智能创作平台,即刻造梦。提供AI绘画和AIGC视频创作体验"
+                         data-url="https://jimeng.jianying.com/">
+                        <img class="orbit-icon" src="/static/picture/jimeng.png" alt="即梦">
+                        <span class="orbit-name">即梦</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="通义万相"
+                         data-desc="阿里通义大模型旗下的AI绘画创作模型"
+                         data-url="https://tongyi.aliyun.com/wanxiang/">
+                        <img class="orbit-icon" src="/static/picture/tyqw.png" alt="通义万相">
+                        <span class="orbit-name">通义万相</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="快手可灵"
+                         data-desc="可灵是由快手旗下自主研发的AI视频与图像生成大模型"
+                         data-url="https://kling.kuaishou.com/">
+                        <img class="orbit-icon" src="/static/picture/keling.png" alt="快手可灵">
+                        <span class="orbit-name">快手可灵</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="海螺 AI"
+                         data-desc="创新的AI视频生成器和提示词工具"
+                         data-url="https://hailuoai.com/">
+                        <img class="orbit-icon" src="/static/picture/hailuo.png" alt="海螺 AI">
+                        <span class="orbit-name">海螺 AI</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="vidu"
+                         data-desc="国内首个纯自研的AI视频生成模型"
+                         data-url="https://www.vidu.cn/">
+                        <img class="orbit-icon" src="/static/picture/vidu.png" alt="vidu">
+                        <span class="orbit-name">vidu</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="白日梦"
+                         data-desc="领先的AI视频创作类AIGC创作平台"
+                         data-url="https://aibrm.com/?code=xomlzfr07">
+                        <img class="orbit-icon" src="/static/picture/bairi.png" alt="白日梦">
+                        <span class="orbit-name">白日梦</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="Sora2"
+                         data-desc="OpenAI最新发布的音视频生成模型"
+                         data-url="https://sora.chatgpt.com/explore">
+                        <img class="orbit-icon" src="/static/picture/Sora.png" alt="Sora2">
+                        <span class="orbit-name">Sora2</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="Nano Banana"
+                         data-desc="基于OpenAI的AI智能视频创作平台"
+                         data-url="https://www.nanobananai.ai/">
+                        <img class="orbit-icon" src="/static/picture/Banana.png" alt="Nano Banana">
+                        <span class="orbit-name">Nano Banana</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="闪剪"
+                         data-desc="国内领先的AI数字人口播视频在线创作平台"
+                         data-url="https://app.shanjian.tv/">
+                        <img class="orbit-icon" src="/static/picture/shan.png" alt="闪剪">
+                        <span class="orbit-name">闪剪</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="造点AI"
+                         data-desc="由夸克发布的AI创作平台"
+                         data-url="https://www.zaodian.com/">
+                        <img class="orbit-icon" src="/static/picture/kua.png" alt="造点AI">
+                        <span class="orbit-name">造点AI</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="讯飞绘镜"
+                         data-desc="讯飞旗下AI创作平台"
+                         data-url="https://typemovie.art/landing/">
+                        <img class="orbit-icon" src="/static/picture/fei.png" alt="讯飞绘镜">
+                        <span class="orbit-name">讯飞绘镜</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="智谱清影"
+                         data-desc="智谱推出的一款AI生成视频模型"
+                         data-url="https://chatglm.cn/video?lang=zh">
+                        <img class="orbit-icon" src="/static/picture/qing.png" alt="智谱清影">
+                        <span class="orbit-name">智谱清影</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="即梦"
+                         data-desc="一站式智能创作平台,即刻造梦。提供AI绘画和AIGC视频创作体验"
+                         data-url="https://jimeng.jianying.com/">
+                        <img class="orbit-icon" src="/static/picture/jimeng.png" alt="即梦">
+                        <span class="orbit-name">即梦</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="通义万相"
+                         data-desc="阿里通义大模型旗下的AI绘画创作模型"
+                         data-url="https://tongyi.aliyun.com/wanxiang/">
+                        <img class="orbit-icon" src="/static/picture/tyqw.png" alt="通义万相">
+                        <span class="orbit-name">通义万相</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="快手可灵"
+                         data-desc="可灵是由快手旗下自主研发的AI视频与图像生成大模型"
+                         data-url="https://kling.kuaishou.com/">
+                        <img class="orbit-icon" src="/static/picture/keling.png" alt="快手可灵">
+                        <span class="orbit-name">快手可灵</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="海螺 AI"
+                         data-desc="创新的AI视频生成器和提示词工具"
+                         data-url="https://hailuoai.com/">
+                        <img class="orbit-icon" src="/static/picture/hailuo.png" alt="海螺 AI">
+                        <span class="orbit-name">海螺 AI</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="vidu"
+                         data-desc="国内首个纯自研的AI视频生成模型"
+                         data-url="https://www.vidu.cn/">
+                        <img class="orbit-icon" src="/static/picture/vidu.png" alt="vidu">
+                        <span class="orbit-name">vidu</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="白日梦"
+                         data-desc="领先的AI视频创作类AIGC创作平台"
+                         data-url="https://aibrm.com/?code=xomlzfr07">
+                        <img class="orbit-icon" src="/static/picture/bairi.png" alt="白日梦">
+                        <span class="orbit-name">白日梦</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="Sora2"
+                         data-desc="OpenAI最新发布的音视频生成模型"
+                         data-url="https://sora.chatgpt.com/explore">
+                        <img class="orbit-icon" src="/static/picture/Sora.png" alt="Sora2">
+                        <span class="orbit-name">Sora2</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="Nano Banana"
+                         data-desc="基于OpenAI的AI智能视频创作平台"
+                         data-url="https://www.nanobananai.ai/">
+                        <img class="orbit-icon" src="/static/picture/Banana.png" alt="Nano Banana">
+                        <span class="orbit-name">Nano Banana</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="闪剪"
+                         data-desc="国内领先的AI数字人口播视频在线创作平台"
+                         data-url="https://app.shanjian.tv/">
+                        <img class="orbit-icon" src="/static/picture/shan.png" alt="闪剪">
+                        <span class="orbit-name">闪剪</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="造点AI"
+                         data-desc="由夸克发布的AI创作平台"
+                         data-url="https://www.zaodian.com/">
+                        <img class="orbit-icon" src="/static/picture/kua.png" alt="造点AI">
+                        <span class="orbit-name">造点AI</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="讯飞绘镜"
+                         data-desc="讯飞旗下AI创作平台"
+                         data-url="https://typemovie.art/landing/">
+                        <img class="orbit-icon" src="/static/picture/fei.png" alt="讯飞绘镜">
+                        <span class="orbit-name">讯飞绘镜</span>
+                    </div>
+                                    <div class="orbit-item"
+                         data-name="智谱清影"
+                         data-desc="智谱推出的一款AI生成视频模型"
+                         data-url="https://chatglm.cn/video?lang=zh">
+                        <img class="orbit-icon" src="/static/picture/qing.png" alt="智谱清影">
+                        <span class="orbit-name">智谱清影</span>
+                    </div>
+                            </div>
+
+            <!-- 中心内容（修复初始显示+加加载容器） -->
+            <div class="center-content" id="centerContent">
+                <div class="center-badge">忆痕发布页<br>www.937788.xyz</div>
+                <!-- 新增加载容器，包裹图标 -->
+                <div class="center-icon-wrapper" id="centerIconWrapper">
+                    <div class="loading-spinner"></div>
+                    <img class="center-icon" id="centerIcon" src="" 
+                         alt="" style="display: block;">
+                </div>
+                <h1 class="center-title">
+                    <span class="typing-text" id="centerTitle">AI大模型导航</span>
+                    <span class="typing-cursor"></span>
+                </h1>
+                <p class="center-desc" id="centerDesc">聚合全网主流AI大模型，一键直达</p>
+                <a class="center-btn" id="centerBtn" href="#" target="_blank">
+                    <span>立即访问</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- 新增加载动画样式（不影响原有样式） -->
+<style>
+/* 图标容器，相对定位，用于放置加载动画 */
+.center-icon-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* 加载动画 */
+.loading-spinner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid rgba(255,255,255,0.1);
+    border-top: 3px solid #00a8ff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+}
+/* 图标加载中时显示动画 */
+.center-icon-wrapper.loading .loading-spinner {
+    opacity: 1;
+}
+/* 图标样式优化，添加淡入效果 */
+.center-icon {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+.center-icon.loaded {
+    opacity: 1;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+
+<!-- 核心逻辑 JS（修复初始触发+加载逻辑） -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const centerIconWrapper = document.getElementById('centerIconWrapper');
+    const centerIcon = document.getElementById('centerIcon');
+    const centerTitle = document.getElementById('centerTitle');
+    const centerDesc = document.getElementById('centerDesc');
+    const centerBtn = document.getElementById('centerBtn');
+
+    // 1. 页面加载时，先触发初始图标加载
+    function loadCenterIcon(src, onLoaded) {
+        centerIconWrapper.classList.add('loading');
+        const img = new Image();
+        img.src = src;
+        img.onload = function() {
+            centerIcon.src = src;
+            centerIcon.classList.add('loaded');
+            centerIconWrapper.classList.remove('loading');
+            if (onLoaded) onLoaded();
+        };
+        img.onerror = function() {
+            centerIconWrapper.classList.remove('loading');
+            console.error('图标加载失败:', src);
+        };
+    }
+
+    // 2. 初始化轨道（原有逻辑不变，优化点击事件）
+    function initOrbit(ringId) {
+        const ring = document.getElementById(ringId);
+        const items = ring.querySelectorAll('.orbit-item');
+        const count = items.length;
+        const angleStep = 360 / count;
+        const radius = ringId === 'orbitInner' ? 180 : 340;
+
+        items.forEach((item, i) => {
+            const angle = angleStep * i;
+            const rad = (angle * Math.PI) / 180;
+            const x = radius * Math.cos(rad);
+            const y = radius * Math.sin(rad);
+            item.style.transform = `translate(${x}px, ${y}px)`;
+
+            item.addEventListener('click', () => {
+                const name = item.dataset.name;
+                const desc = item.dataset.desc;
+                const url = item.dataset.url;
+                const icon = item.querySelector('.orbit-icon').src;
+
+                // 点击时触发加载动画
+                loadCenterIcon(icon, () => {
+                    centerTitle.textContent = name;
+                    centerDesc.textContent = desc;
+                    centerBtn.href = url;
+                });
+            });
+        });
+
+        // 3. 页面加载完成后，手动触发第一个外环元素的点击（解决初始空白）
+        if (ringId === 'orbitOuter' && items.length > 0) {
+            items[0].click();
+        }
+    }
+
+    initOrbit('orbitOuter');
+    initOrbit('orbitInner');
+
+    // 4. 自动轮播外环（原有逻辑不变）
+    const outerItems = document.querySelectorAll('#orbitOuter .orbit-item');
+    let autoIndex = 0;
+    setInterval(() => {
+        if (outerItems.length) {
+            outerItems[autoIndex % outerItems.length].click();
+            autoIndex++;
+        }
+    }, 4000);
+});
+</script>
+<style>
+
+</style>
+<footer class="footer">
+    <div class="footer-inner">
+        <span class="footer-disclaimer">本站内容仅供学习和交流，非商业用途</span>
+        <div class="footer-links">
+            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="footer-link">浙ICP备2025187466号</a>
+            <span class="footer-divider">|</span>
+            <a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33030402001483" target="_blank" rel="noopener noreferrer" class="footer-link footer-gongan">
+                <img src="https://www.937788.xyz/gonganbeian.png" alt="公安备案" class="gongan-icon" onerror="this.style.display='none'">
+                浙公网安备33030402001483号
+            </a>
+        </div>
+    </div>
+</footer>
+
+<style>
+/* ===============================
+   底部版权 / 备案信息
+================================ */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: #0f172a;
+    border-top: 1px solid #1e293b;
+    padding: 12px 0;
+    z-index: 1000;
+    text-align: center;
+}
+.footer-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.footer-disclaimer {
+    color: #f5c518;
+    font-size: 13px;
+}
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.footer-link {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+}
+.footer-link:hover {
+    color: #00d4ff;
+}
+.footer-divider {
+    color: #334155;
+    font-size: 13px;
+}
+.footer-gongan {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.gongan-icon {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    html, body { overflow-x: hidden !important; }
+    .footer { padding: 10px 0 15px; }
+    .footer-inner { flex-direction: column; gap: 6px; }
+    .footer-links { flex-direction: column; gap: 4px; }
+    .footer-divider { display: none; }
+    .footer-disclaimer, .footer-link { font-size: 12px; }
+}
+</style>
+
+
+</body>
+</html>
